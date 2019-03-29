@@ -1,0 +1,3 @@
+[submodule "thirdparty/dnn-im2col"]
+	path = thirdparty/dnn-im2col
+	url = https://github.com/hiroyam/dnn-im2col.git
