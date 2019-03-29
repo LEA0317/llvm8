@@ -2301,7 +2301,7 @@ QualType Sema::BuildVectorType(QualType CurType, Expr *SizeExpr,
   // The base type must be integer (not Boolean or enumeration) or float, and
   // can't already be a vector.
   if (!CurType->isDependentType() &&
-      (!CurType->isBuiltinType() || CurType->isBooleanType() ||
+      (!CurType->isBuiltinType() /*|| CurType->isBooleanType()*/ ||
        (!CurType->isIntegerType() && !CurType->isRealFloatingType()))) {
     Diag(AttrLoc, diag::err_attribute_invalid_vector_type) << CurType;
     return QualType();
@@ -2361,8 +2361,8 @@ QualType Sema::BuildExtVectorType(QualType T, Expr *ArraySize,
   // on bitvectors, and we have no well-defined ABI for bitvectors, so vectors
   // of bool aren't allowed.
   if ((!T->isDependentType() && !T->isIntegerType() &&
-       !T->isRealFloatingType()) ||
-      T->isBooleanType()) {
+       !T->isRealFloatingType()) /*||
+				   T->isBooleanType()*/) {
     Diag(AttrLoc, diag::err_attribute_invalid_vector_type) << T;
     return QualType();
   }
