@@ -135,6 +135,8 @@ InstructionSelector *createX86InstructionSelector(const X86TargetMachine &TM,
 
 FunctionPass *createX86SpeculativeLoadHardeningPass();
 
+FunctionPass *createX86DumpMBBPass();
+  
 void initializeEvexToVexInstPassPass(PassRegistry &);
 void initializeFixupBWInstPassPass(PassRegistry &);
 void initializeFixupLEAPassPass(PassRegistry &);

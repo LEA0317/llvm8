@@ -31,6 +31,7 @@ set(sources
   X86CondBrFolding.cpp
   X86DomainReassignment.cpp
   X86DiscriminateMemOps.cpp
+  X86DumpMBB.cpp
   X86ExpandPseudo.cpp
   X86FastISel.cpp
   X86FixupBWInsts.cpp

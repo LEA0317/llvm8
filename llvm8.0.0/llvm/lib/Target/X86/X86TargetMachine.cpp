@@ -325,6 +325,12 @@ UseVZeroUpper("x86-use-vzeroupper", cl::Hidden,
   cl::desc("Minimize AVX to SSE transition penalty"),
   cl::init(true));
 
+static cl::opt<bool>
+DumpMBB("x86-dump-mbb",
+	cl::Hidden,
+	cl::desc("Dump Machine Basic Block before CodeGen"),
+	cl::init(false));
+
 //===----------------------------------------------------------------------===//
 // X86 TTI query.
 //===----------------------------------------------------------------------===//
@@ -514,4 +520,8 @@ void X86PassConfig::addPreEmitPass2() {
   const Triple &TT = TM->getTargetTriple();
   if (!TT.isOSDarwin() && !TT.isOSWindows())
     addPass(createCFIInstrInserter());
+
+  if (DumpMBB) {
+    addPass(createX86DumpMBBPass());
+  }
 }
