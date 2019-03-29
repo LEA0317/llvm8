@@ -1,0 +1,3 @@
+[submodule "thirdparty/swp_step"]
+	path = thirdparty/swp_step
+	url = https://github.com/kaityo256/swp_step.git

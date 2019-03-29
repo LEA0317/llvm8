@@ -2,6 +2,10 @@ all: test.s
 
 bitvec: bit_vector_v32_x86.s bit_vector_v64_x86.s bit_vector_v128_x86.s
 
+swp:
+	@echo "** build swp_test **"
+	cd ../thirdparty/swp_step && make -f makefile CC="../../llvm8.0.0/build/bin/clang++ -S -march=native"
+
 llvm:
 	@echo "** build llvm **"
 	cd ../llvm8.0.0 && ./build_compiler.sh
