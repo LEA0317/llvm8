@@ -1,4 +1,4 @@
-//===------- X86ExpandPseudo.cpp - Expand pseudo instructions -------------===//
+//===------- X86DumpMBB.cpp - Dump MachineBasicBlocks -------------===//
 //
 //                     The LLVM Compiler Infrastructure
 //
