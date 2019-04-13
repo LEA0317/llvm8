@@ -17,6 +17,8 @@
 #include "llvm/CodeGen/MachineFunctionPass.h"
 #include "llvm/CodeGen/Passes.h" // For IDs of passes that are preserved.
 #include "llvm/IR/GlobalValue.h"
+#include <iostream>
+
 using namespace llvm;
 
 #define DEBUG_TYPE "x86-dump-mbb"
@@ -39,6 +41,7 @@ char X86DumpMBB::ID = 0;
 bool X86DumpMBB::runOnMachineFunction(MachineFunction &MF) {
   for (MachineBasicBlock &MBB : MF) {
     MBB.dump();
+    std::cout << std::endl;
   }
   return false;
 }
