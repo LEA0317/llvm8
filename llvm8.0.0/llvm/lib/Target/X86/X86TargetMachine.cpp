@@ -79,6 +79,7 @@ extern "C" void LLVMInitializeX86Target() {
   initializeX86SpeculativeLoadHardeningPassPass(PR);
   initializeX86FlagsCopyLoweringPassPass(PR);
   initializeX86CondBrFoldingPassPass(PR);
+  initializeX86MachineLoopDepthPass(PR);
 }
 
 static std::unique_ptr<TargetLoweringObjectFile> createTLOF(const Triple &TT) {
@@ -331,6 +332,12 @@ DumpMBB("x86-dump-mbb",
 	cl::desc("Dump Machine Basic Block before CodeGen"),
 	cl::init(false));
 
+static cl::opt<bool>
+DumpMLDepth("x86-ml-depth",
+	    cl::Hidden,
+	    cl::desc("Dump Machine Basic Block with MachineLoop Depth"),
+	    cl::init(false));
+
 //===----------------------------------------------------------------------===//
 // X86 TTI query.
 //===----------------------------------------------------------------------===//
@@ -523,5 +530,8 @@ void X86PassConfig::addPreEmitPass2() {
 
   if (DumpMBB) {
     addPass(createX86DumpMBBPass());
+  }
+  if (DumpMLDepth) {
+    addPass(createX86MachineLoopDepthPass());
   }
 }

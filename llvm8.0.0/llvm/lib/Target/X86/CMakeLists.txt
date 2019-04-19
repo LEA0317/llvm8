@@ -54,6 +54,7 @@ set(sources
   X86LegalizerInfo.cpp
   X86MCInstLower.cpp
   X86MachineFunctionInfo.cpp
+  X86MachineLoopDepth.cpp
   X86MacroFusion.cpp
   X86OptimizeLEAs.cpp
   X86PadShortFunction.cpp
