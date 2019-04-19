@@ -17,7 +17,7 @@ clean:
 test.s:
 	@echo "** test **"
 	../llvm8.0.0/build/bin/clang++ -S -emit-llvm test.cpp
-	../llvm8.0.0/build/bin/llc -x86-dump-mbb test.ll
+	../llvm8.0.0/build/bin/llc -x86-ml-depth test.ll
 	#../llvm8.0.0/build/bin/llc test.ll
 
 bit_vector_v32_x86.s:
