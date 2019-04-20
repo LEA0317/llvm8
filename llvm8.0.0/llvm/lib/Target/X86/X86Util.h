@@ -51,16 +51,18 @@ X86SimpleLoopAnalyzer(llvm::MachineBasicBlock *MBB) {
     return false;
   }
 
-  // loop structure check
-  if (isConditionalBranchMI(BranchMI)) {
-    llvm::MachineBasicBlock *TargetMBB = BranchMI->getOperand(0).getMBB();
+  // simple loop structure check
+  {
+    if (!isConditionalBranchMI(BranchMI)) {
+      return false;
+    }
 
+    llvm::MachineBasicBlock *TargetMBB = BranchMI->getOperand(0).getMBB();
+ 
     if (TargetMBB->getNumber()      != MBB->getNumber()
 	|| TargetMBB->getFullName() != MBB->getFullName()) {
       return false;
     }
-  } else {
-    return false;
   }
 
   return true;
