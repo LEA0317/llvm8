@@ -22,6 +22,7 @@
 #include "llvm/Support/Debug.h"
 #include "llvm/IR/DebugLoc.h"
 
+#include "X86Util.h"
 #include "X86.h"
 #include "X86Subtarget.h"
 #include "X86RegisterInfo.h"
@@ -85,7 +86,12 @@ X86MachineLoopDepth::runOnMachineFunction(MachineFunction &F) {
     // Get Loop Depth from MachineLoopInfo
     int MLDepth = MLI->getLoopDepth(BB);
 
-    std::cout << ">> loop depth ( " << MLDepth << " )" << std::endl;
+    if (X86SimpleLoopAnalyzer(BB)) { // whether is loop or not.
+      std::cout << ">> loop depth ( " << MLDepth << " )" << std::endl;
+    } else {
+      std::cout << ">> basic block depth ( " << MLDepth << " )" << std::endl;
+    }
+
     BB->dump();
     std::cout << std::endl;
   }
